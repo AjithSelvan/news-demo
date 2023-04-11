@@ -9,7 +9,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t ajithselvan/newsapp${BUILD_NUMBER} .'
+        sh 'docker build -t ajithselvan/newsapp:${BUILD_NUMBER} .'
+	sh echo ${BUILD_NUMBER}
       }
     }
     stage('Login') {
