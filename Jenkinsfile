@@ -1,10 +1,10 @@
 pipeline {
-	agent any
-// 	{
-// //     docker {
-// //       image 'docker:latest'
-// //     }
-//   }
+agent 
+	{
+    docker {
+      image 'docker:latest'
+    }
+  }
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
