@@ -1,7 +1,9 @@
 pipeline {
   agent {
-	docker { image 'docker:latest' }
-	}
+    docker {
+      image ''
+    }
+  }
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
@@ -24,12 +26,8 @@ pipeline {
     stage('Push') {
       steps {
         sh 'docker push ajithselvan/newsapp${BUILD_NUMBER}'
+	sh 'docker logout'
       }
-    }
-  }
-  post {
-    always {
-      sh 'docker logout'
     }
   }
 }
