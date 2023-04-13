@@ -14,8 +14,6 @@ pipeline {
     stage('Build') {
       steps {
         sh 'docker build -t ajithselvan/newsapp:${BUILD_NUMBER} .'
-	sh 'echo ${DOCKERHUB_CREDENTIALS}'
-	sh 'echo ${BUILD_NUMBER}'
       }
     }
     stage('Login') {
@@ -25,7 +23,8 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push ajithselvan/newsapp${BUILD_NUMBER}'
+        sh 'docker push ajithselvan/newsapp:${BUILD_NUMBER}'
+	sh 'docker rmi ajithselvan/newsapp:${BUILD_NUMBER}'
 	sh 'docker logout'
       }
     }
