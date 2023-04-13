@@ -3,8 +3,9 @@ FROM golang:1.20
 # Set the Current Working Directory inside the container
 #WORKDIR $GOPATH/src/github.com/codefresh-contrib/go-sample-app
 
+WORKDIR /app
 # Copy everything from the current directory to the PWD (Present Working Directory) inside the container
-COPY . .
+COPY . /app
 
 # Download all the dependencies
 # RUN go get -d -v ./...
