@@ -1,6 +1,5 @@
 pipeline {
-agent 
-	{
+  agent {
     docker {
       image 'docker:latest'
     }
