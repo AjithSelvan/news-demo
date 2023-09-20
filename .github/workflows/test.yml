@@ -1,9 +1,19 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+on:
+  push:
+    tags:
+      - '*production*'
 jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: ls -lrt
+      # - uses: actions/checkout@v4
+      # - run: ls -lrt
+      - name: Get tag name
+        id: get_tag_name
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - uses: actions/checkout@v1
+        with:
+          ref: ${{ steps.get_tag_name.outputs.VERSION }}
+      - run: echo ${{ steps.get_tag_name.outputs.VERSION }}
