@@ -7,3 +7,4 @@ apt install -y nginx
 # EOF
 systemctl start nginx
 systemctl enable nginx
+# test
